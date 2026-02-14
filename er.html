@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 Private Access</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #0f172a; /* Dark Navy */
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Container Utama */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 { font-weight: 600; letter-spacing: -0.5px; margin-bottom: 10px; }
+        p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px; }
+
+        /* Input Styling */
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"]:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Button Styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+        }
+
+        /* Konten Tersembunyi */
+        #hiddenContent { display: none; animation: fadeIn 0.8s ease forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .main-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #f472b6, #db2777);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(219, 39, 119, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loginBox" class="glass-card">
+        <h2>ENTER CODE</h2>
+        <p>ytta aja yang bisa masuk.</p>
+        <input type="password" id="inputPass" placeholder="Ketik kodenya di sini...">
+        <button onclick="checkCode()">Buka Akses</button>
+    </div>
+
+    <div id="hiddenContent" class="glass-card">
+        <h2>Akses Diterima! 🔓</h2>
+        <p>Halo! please take ur treasure:</p>
+        <a href="https://rapaaelll.github.io/hearts-day/haiii.html" class="main-link">Klik untuk Lanjut ✨</a>
+    </div>
+
+    <script>
+        function checkCode() {
+            const pass = document.getElementById('inputPass').value;
+            const correctPass = "143"; // GANTI KODE RAHASIAMU DI SINI
+
+            if (pass === correctPass) {
+                // Sembunyikan box login, tampilkan konten
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('hiddenContent').style.display = 'block';
+                
+                // Efek kembang api/party
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Kodenya bener, silakan masuk.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Yah, Salah...',
+                    text: 'Kodenya salah, clue pas km ketik text r tadi sebenernya udah otomatis ngirim kode ke aku kalo kamu kirim bakal tau si!',
+                    confirmButtonColor: '#38bdf8'
+                });
+            }
+        }
+
+        // Supaya bisa enter buat submit
+        document.getElementById('inputPass').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkCode();
+            }
+        });
+    </script>
+</body>
+</html>
